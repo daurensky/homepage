@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>На старт</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        body {
+            background: #1b1a21;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 100px;
+            min-height: 100vh;
+        }
+
+        .img-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .img {
+            object-fit: cover;
+            border-radius: 1rem;
+            border: 5px solid #ff5e00;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        .img.show {
+            opacity: 1;
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+
+        .link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(42, 41, 51, 0.5);
+            padding: 1rem;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 1rem;
+            transition: background 100ms ease;
+        }
+
+        .link:hover {
+            background: #41404c;
+        }
+
+        .link img {
+            border-radius: 0.5rem;
+            transition: transform 100ms ease;
+        }
+
+        .link:hover img {
+            transform: rotate(-5deg) translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-container">
+        <img src="./img/1.webp" alt="" width="300" height="300" class="img show">
+        <img src="./img/2.jpg" alt="" width="300" height="300" class="img">
+        <img src="./img/3.jpg" alt="" width="300" height="300" class="img">
+        <img src="./img/4.jpg" alt="" width="300" height="300" class="img">
+        <img src="./img/5.jpg" alt="" width="300" height="300" class="img">
+    </div>
+
+    <div class="links">
+        <a href="https://drive.google.com/drive/my-drive" class="link">
+            <img src="./img/links/dr.webp" alt="Link" height="50">
+            Drive
+        </a>
+
+        <a href="https://www.figma.com" class="link">
+            <img src="./img/links/fi.png" alt="Link" height="50">
+            Figma
+        </a>
+
+        <a href="https://www.notion.so" class="link">
+            <img src="./img/links/no.png" alt="Link" height="50">
+            Notion
+        </a>
+
+        <a href="https://tou.edu.kz/student_cabinet" class="link">
+            <img src="./img/links/to.jpg" alt="Link" height="50">
+            ToU
+        </a>
+
+        <a href="https://www.youtube.com" class="link">
+            <img src="./img/links/yt.webp" alt="Link" height="50">
+            YouTube
+        </a>
+
+        <a href="https://www.reddit.com" class="link">
+            <img src="./img/links/re.png" alt="Link" height="50">
+            Reddit
+        </a> 
+        
+        <a href="https://github.com" class="link">
+            <img src="./img/links/gi.png" alt="Link" height="50">
+            Github
+        </a> 
+    </div>
+
+    <script>
+        const INTERATE_SECONDS = 5
+
+        let interval = null
+
+        const images = document.querySelectorAll('.img')
+        const lastImg = images.length - 1
+
+        let currentImg = 0
+
+        const swapImage = () => {
+            let prevImage = null
+            let timeout = null
+
+            if (currentImg === lastImg) {
+                currentImg = 0
+                prevImage = images[lastImg]
+            } else {
+                currentImg++
+                prevImage = images[currentImg - 1]
+            }
+
+            if (prevImage) {
+                prevImage.style.zIndex = 0
+
+                setTimeout(() => {
+                    prevImage.classList.remove('show')
+                }, 1000)
+            }
+
+            images[currentImg].classList.add('show')
+            images[currentImg].style.zIndex = 1
+        }
+
+        interval = setInterval(swapImage, INTERATE_SECONDS * 1000)
+    </script>
+</body>
+
+</html>
