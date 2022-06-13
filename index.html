@@ -10,9 +10,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
 
-    <title>На старт</title>
+    <title>Let's do good things</title>
 
     <style>
+        :root {
+            --img-size: 376px;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -20,8 +24,11 @@
             font-family: 'Inconsolata', monospace;
         }
 
-        body {
+        html {
             background: #1b1a21;
+        }
+
+        body {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -29,20 +36,36 @@
             min-height: 100vh;
         }
 
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url(./img/rays.gif);
+            background-size: cover;
+            z-index: -1;
+            opacity: 0.25;
+            filter: blur(5px);
+        }
+
         .img-container {
             position: relative;
-            width: 300px;
-            height: 300px;
+            width: var(--img-size);
+            height: var(--img-size);
         }
 
         .img {
             object-fit: cover;
-            border-radius: 1rem;
-            border: 5px solid #ff5e00;
+            border-radius: 0.25rem;
+            border: 5px solid rgba(105, 141, 155, 0.25);
             position: absolute;
             top: 0;
             left: 0;
             opacity: 0;
+            width: var(--img-size);
+            height: var(--img-size);
             transition: opacity 1s ease;
         }
 
@@ -59,22 +82,28 @@
         .link {
             display: flex;
             align-items: center;
+            flex-shrink: 0;
             gap: 1rem;
-            background: rgba(42, 41, 51, 0.5);
+            background: rgba(105, 141, 155, 0.25);
             padding: 1rem;
+            width: 205px;
+            height: 82px;
             text-decoration: none;
             font-size: 1.5rem;
             font-weight: bold;
             color: #fff;
-            border-radius: 1rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
             transition: background 100ms ease;
         }
 
         .link:hover {
-            background: #41404c;
+            background: rgba(105, 141, 155, 0.5);
         }
 
         .link img {
+            width: 50px;
             border-radius: 0.5rem;
             transition: transform 100ms ease;
         }
@@ -82,53 +111,87 @@
         .link:hover img {
             transform: rotate(-5deg) translateY(-5px);
         }
+
+        .translate {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .translate-input {
+            width: 100%;
+            font-size: 1rem;
+            font-family: 'Inconsolata', monospace;
+            font-size: 1.5rem;
+            padding: 0 1rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="img-container">
-        <img src="./img/1.webp" alt="" width="300" height="300" class="img show">
-        <img src="./img/2.jpg" alt="" width="300" height="300" class="img">
-        <img src="./img/3.jpg" alt="" width="300" height="300" class="img">
-        <img src="./img/4.jpg" alt="" width="300" height="300" class="img">
-        <img src="./img/5.jpg" alt="" width="300" height="300" class="img">
+        <img src="./img/1.webp" alt="" class="img show">
+        <img src="./img/2.jpg" alt="" class="img">
+        <img src="./img/3.jpg" alt="" class="img">
+        <img src="./img/4.jpg" alt="" class="img">
+        <img src="./img/5.jpg" alt="" class="img">
     </div>
 
-    <div class="links">
-        <a href="https://drive.google.com/drive/my-drive" class="link">
-            <img src="./img/links/dr.webp" alt="Link" height="50">
-            Drive
-        </a>
+    <div>
+        <form action="https://translate.google.com/" target="_blank" class="translate">
+            <input type="hidden" name="sl" value="auto">
+            <input type="hidden" name="tl" value="ru">
+            <input type="hidden" name="op" value="translate">
 
-        <a href="https://www.figma.com" class="link">
-            <img src="./img/links/fi.png" alt="Link" height="50">
-            Figma
-        </a>
+            <input type="text" name="text" class="translate-input" placeholder="For translate">
 
-        <a href="https://www.notion.so" class="link">
-            <img src="./img/links/no.png" alt="Link" height="50">
-            Notion
-        </a>
+            <button class="link">
+                <img src="./img/links/tr.webp" alt="Link" class="translate-btn">
+                Translate
+            </button>
+        </form>
 
-        <a href="https://tou.edu.kz/student_cabinet" class="link">
-            <img src="./img/links/to.jpg" alt="Link" height="50">
-            ToU
-        </a>
+        <div class="links">
+            <a href="https://drive.google.com/drive/my-drive" class="link">
+                <img src="./img/links/dr.webp" alt="Link">
+                Drive
+            </a>
 
-        <a href="https://www.youtube.com" class="link">
-            <img src="./img/links/yt.webp" alt="Link" height="50">
-            YouTube
-        </a>
+            <a href="https://www.notion.so" class="link">
+                <img src="./img/links/no.png" alt="Link">
+                Notion
+            </a>
 
-        <a href="https://www.reddit.com" class="link">
-            <img src="./img/links/re.png" alt="Link" height="50">
-            Reddit
-        </a> 
-        
-        <a href="https://github.com" class="link">
-            <img src="./img/links/gi.png" alt="Link" height="50">
-            Github
-        </a> 
+            <a href="https://github.com" class="link">
+                <img src="./img/links/gi.png" alt="Link">
+                Github
+            </a>
+
+            <a href="https://www.figma.com" class="link">
+                <img src="./img/links/fi.png" alt="Link">
+                Figma
+            </a>
+
+            <a href="https://www.reddit.com" class="link">
+                <img src="./img/links/re.png" alt="Link">
+                Reddit
+            </a>
+
+            <a href="https://www.youtube.com" class="link">
+                <img src="./img/links/yt.webp" alt="Link">
+                YouTube
+            </a>
+
+            <a href="https://rezka.ag" class="link">
+                <img src="./img/links/hd.png" alt="Link">
+                Rezka
+            </a>
+
+            <a href="https://yummyanime.org" class="link">
+                <img src="./img/links/yu.png" alt="Link">
+                Anime
+            </a>
+        </div>
     </div>
 
     <script>
